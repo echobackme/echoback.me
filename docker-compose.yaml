@@ -1,0 +1,7 @@
+services:
+    web_client:
+        build:
+            context: ./apps/web_client/
+        container_name: echoback_web
+        ports:
+            - "8080:80"
