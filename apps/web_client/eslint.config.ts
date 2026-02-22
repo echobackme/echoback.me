@@ -28,7 +28,8 @@ export default defineConfig([
             },
         },
         plugins: {
-            "react-hooks": reactHooks as unknown as Linter.Plugin,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            "react-hooks": reactHooks as any,
             "simple-import-sort": simpleImportSort,
         },
         rules: {
