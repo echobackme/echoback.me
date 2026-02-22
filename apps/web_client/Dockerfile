@@ -1,7 +1,9 @@
 FROM node:24.13.0 AS build
 WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 COPY . .
-RUN yarn install && yarn build
+RUN yarn build
 
 FROM nginx:alpine
 COPY --from=build /app/.build /usr/share/nginx/html
