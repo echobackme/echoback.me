@@ -1,10 +1,22 @@
-import React from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+
+import Layout from "~/components/Layout"
+import { ROUTES } from "~/routes"
+
+// Temporary components for testing
+const HomePage = () => <div>Home Page</div>
+const ComposePage = () => <div>Compose Page</div>
 
 const App = () => {
     return (
-        <div>
-            <h1>echoback.me</h1>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route path={ROUTES.HOME} element={<HomePage />} />
+                    <Route path={ROUTES.MESSAGE.COMPOSE} element={<ComposePage />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
