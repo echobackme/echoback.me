@@ -12,8 +12,9 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route element={<Layout />}>
-                    <Route path={ROUTES.HOME} element={<HomePage />} />
-                    <Route path={ROUTES.MESSAGE.COMPOSE} element={<ComposePage />} />
+                    <Route path={ROUTES.MAIN} element={<HomePage />}>
+                        <Route path={ROUTES.MESSAGE.COMPOSE} element={<ComposePage />} />
+                    </Route>
                 </Route>
             </Routes>
         </BrowserRouter>
