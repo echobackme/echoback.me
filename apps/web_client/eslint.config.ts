@@ -3,6 +3,7 @@ import { defineConfig } from "eslint/config"
 import prettier from "eslint-config-prettier"
 import reactHooks from "eslint-plugin-react-hooks"
 import simpleImportSort from "eslint-plugin-simple-import-sort"
+import tailwind from "eslint-plugin-tailwindcss"
 import globals from "globals"
 import tseslint from "typescript-eslint"
 
@@ -11,6 +12,7 @@ export default defineConfig([
 
     js.configs.recommended,
     ...tseslint.configs.recommended,
+    ...tailwind.configs["flat/recommended"],
 
     {
         files: ["**/*.{ts,tsx}"],
@@ -34,12 +36,23 @@ export default defineConfig([
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
-            "simple-import-sort/imports": "error",
-            "simple-import-sort/exports": "error",
             "@typescript-eslint/no-unused-vars": ["warn"],
             "react-hooks/rules-of-hooks": "error",
             "react-hooks/exhaustive-deps": "warn",
             "no-undef": "off",
+
+            "simple-import-sort/imports": "error",
+            "simple-import-sort/exports": "error",
+
+            "tailwindcss/classnames-order": "off",
+            "tailwindcss/no-custom-classname": "warn",
+            "tailwindcss/enforces-shorthand": "warn",
+            "tailwindcss/no-contradicting-classname": "error",
+        },
+        settings: {
+            tailwindcss: {
+                config: "tailwind.config.ts",
+            },
         },
     },
 

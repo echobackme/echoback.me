@@ -9,6 +9,9 @@ const config: Config = {
     printWidth: 120,
     bracketSpacing: true,
     endOfLine: "auto",
+
+    tailwindConfig: "./tailwind.config.ts",
+    plugins: ["prettier-plugin-tailwindcss"],
 }
 
 export default config

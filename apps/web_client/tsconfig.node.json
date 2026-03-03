@@ -10,5 +10,12 @@
         "noUnusedLocals": true,
         "noEmit": true
     },
-    "include": ["vite.config.ts", "eslint.config.ts", "prettier.config.ts", "tailwind.config.ts", "postcss.config.ts"]
+    "include": [
+        "vite.config.ts",
+        "eslint.config.ts",
+        "prettier.config.ts",
+        "tailwind.config.ts",
+        "postcss.config.ts",
+        "tailwind.d.ts"
+    ]
 }
