@@ -16,7 +16,8 @@ export default {
                 inter: ["Inter", "sans-serif"],
             },
             fontSize: {
-                "size-xs": ["0.75rem", { lineHeight: "1.25rem" }], // 12px/20px
+                "body-xs": ["0.75rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0" }], // 12px/15px
+                "body-s": ["1rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0" }], // 16px/20px
             },
             backgroundImage: {
                 "image-main-pattern": "url('/assets/main_pattern.png')",
