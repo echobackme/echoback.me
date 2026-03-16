@@ -21,6 +21,8 @@ export default {
             },
             fontSize: {
                 "header-h1": ["2.875rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 46px/57.5px
+                "header-h2": ["2.5rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 40px/50px
+                "header-h3": ["1.125rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 18px/22.5px
                 "body-xs": ["0.75rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 12px/15px
                 "body-s": ["1rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 16px/20px
                 "body-s-strong": ["1rem", { lineHeight: "1.25", fontWeight: "700", letterSpacing: "0.06rem" }], // 16px/20px

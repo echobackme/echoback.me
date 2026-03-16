@@ -27,8 +27,8 @@ const Layout = () => {
     const activeModal = searchParams.get("modal")
 
     return (
-        <div className="flex min-h-screen flex-col bg-color-bg bg-image-main-pattern bg-fixed bg-repeat antialiased">
-            <header className="mx-auto flex w-full max-w-7xl justify-between px-16 py-12">
+        <div className="flex min-h-screen min-w-fit flex-col bg-color-bg bg-image-main-pattern bg-fixed bg-repeat antialiased">
+            <header className="mx-auto flex w-full min-w-fit max-w-7xl justify-between px-16 py-12">
                 <div></div>
                 <nav>
                     <button className="flex items-center rounded-lg px-4 py-2 font-inter text-body-s-strong text-color-text transition-all duration-200 hover:bg-color-text hover:text-color-surface active:scale-95">
@@ -38,11 +38,11 @@ const Layout = () => {
                 </nav>
             </header>
 
-            <main className="mx-auto w-full max-w-7xl grow p-8">
+            <main className="mx-auto w-full min-w-fit max-w-7xl grow p-8">
                 <Outlet />
             </main>
 
-            <footer className="flex w-full justify-center">
+            <footer className="flex w-full min-w-fit justify-center">
                 <div className="flex flex-col items-center justify-center bg-color-surface/90 px-9 py-3 font-inter text-body-xs text-color-text">
                     <nav className="flex gap-1">
                         <a href="#" className="transition-colors hover:text-color-hover">
