@@ -8,13 +8,14 @@ jobs:
     verify:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
             
             - name: Install Node
               uses: actions/setup-node@v6
               with:
-                  node-version-file: 'package.json'
+                  node-version-file: 'apps/web_client/package.json'
                   cache: 'yarn'
+                  cache-dependency-path: 'apps/web_client/yarn.lock'
             
             - name: Install Dependencies
               run: yarn install --frozen-lockfile
