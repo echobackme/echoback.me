@@ -13,12 +13,14 @@ jobs:
             - name: Install Node
               uses: actions/setup-node@v6
               with:
-                  node-version-file: 'apps/web_client/package.json'
-                  cache: 'yarn'
-                  cache-dependency-path: 'apps/web_client/yarn.lock'
+                  node-version-file: ./apps/web_client/package.json
+                  cache: yarn
+                  cache-dependency-path: ./apps/web_client/yarn.lock
             
             - name: Install Dependencies
+              working-directory: ./apps/web_client/
               run: yarn install --frozen-lockfile
             
             - name: Run Build
+              working-directory: ./apps/web_client/
               run: yarn build
