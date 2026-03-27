@@ -35,5 +35,5 @@ jobs:
             
             - name: "Build and Push"
               run: |
-                  docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.event.inputs.reason }} ./apps/web-client
+                  docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.event.inputs.reason }} ./apps/web_client
                   docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.event.inputs.reason }}
