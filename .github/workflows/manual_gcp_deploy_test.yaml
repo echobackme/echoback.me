@@ -10,7 +10,7 @@ on:
 
 env:
     PROJECT_ID: echobackme
-    REGION: europe-central2
+    REGION: europe-north1
     REPOSITORY: images
     IMAGE: web-client
     SERVICE_NAME: web-client-qa1

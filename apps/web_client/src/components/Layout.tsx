@@ -57,7 +57,7 @@ const Layout = () => {
                             Support
                         </a>
                     </nav>
-                    <p className="mt-1">© EchoBack, {new Date().getFullYear()} - Hear Yourself Later!</p>
+                    <p className="mt-1">© EchoBack, {new Date().getFullYear()} - Hear Yourself Later</p>
                 </div>
             </footer>
 
