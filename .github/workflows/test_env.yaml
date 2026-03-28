@@ -1,11 +1,9 @@
-name: Deploy To Testing Env
+name: Deploy To Test Env
 
 on:
     push:
         branches:
             - main
-        paths:
-            - ./apps/web_client/**'
 
 env:
     PROJECT_ID: echobackme
