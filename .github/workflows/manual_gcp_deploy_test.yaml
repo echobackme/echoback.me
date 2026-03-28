@@ -6,14 +6,14 @@ on:
             reason:
                 description: "Tag"
                 required: true
-                default: "qa1"
+                default: "test"
 
 env:
     PROJECT_ID: echobackme
     REGION: europe-north1
     REPOSITORY: images
     IMAGE: web-client
-    SERVICE_NAME: web-client-qa1
+    SERVICE_NAME: web-client-test
 
 jobs:
     build-and-push:
