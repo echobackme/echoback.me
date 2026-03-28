@@ -1,19 +1,19 @@
-name: Manual GCP Deploy
+name: Deploy To Testing Env
 
 on:
-    workflow_dispatch:
-        inputs:
-            reason:
-                description: "Tag"
-                required: true
-                default: "test"
+    push:
+        branches:
+            - main
+        paths:
+            - ./apps/web_client/**'
 
 env:
     PROJECT_ID: echobackme
     REGION: europe-north1
+    SERVICE_NAME: web-client-test
     REPOSITORY: images
     IMAGE: web-client
-    SERVICE_NAME: web-client-test
+    TAG: test
 
 jobs:
     build-and-push:
@@ -36,12 +36,12 @@ jobs:
             
             - name: "Build and Push"
               run: |
-                  docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.event.inputs.reason }} ./apps/web_client
-                  docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.event.inputs.reason }}
+                  docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ env.TAG }} ./apps/web_client
+                  docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ env.TAG }}
             
             - name: "Deploy to Cloud Run"
               uses: "google-github-actions/deploy-cloudrun@v3"
               with:
                   service: "${{ env.SERVICE_NAME }}"
-                  image: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.event.inputs.reason }}
+                  image: ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ env.TAG }}
                   region: ${{ env.REGION }}
