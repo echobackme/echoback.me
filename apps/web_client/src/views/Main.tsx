@@ -1,13 +1,12 @@
-import { useSearchParams } from "react-router-dom"
+import { Button } from "~/components/Button"
+import { useModal } from "~/components/Modal"
+import { MODAL } from "~/routes"
 
-export const MainView = () => {
-    const [searchParams, setSearchParams] = useSearchParams()
+const Main = () => {
+    const { openModal } = useModal()
 
-    // TODO []: Use custom hook for this function and handleClose as well
     const handleOpen = () => {
-        const params = new URLSearchParams(searchParams)
-        params.append("modal", "compose") // TODO []: Use mapping for these literals
-        setSearchParams(params)
+        openModal(MODAL.COMPOSE)
     }
 
     return (
@@ -59,3 +58,5 @@ export const MainView = () => {
         </div>
     )
 }
+
+export default Main
