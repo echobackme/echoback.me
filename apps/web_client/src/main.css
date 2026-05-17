@@ -5,3 +5,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .shadow-section {
+        box-shadow: 0 0.25rem 0.25rem 0 color-mix(in srgb, theme("colors.color.shadow.primary"), transparent 75%);
+    }
+
+    .shadow-card {
+        box-shadow: 0 0.25rem 0.75rem 0.3125rem color-mix(in srgb, theme("colors.color.shadow.primary"), transparent 75%);
+    }
+
+    .shadow-modal {
+        box-shadow: 0 1.5rem 5rem 0 color-mix(in srgb, theme("colors.color.shadow.accent"), transparent 76%);
+    }
+}

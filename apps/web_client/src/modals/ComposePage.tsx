@@ -7,9 +7,9 @@ const ComposePage = () => {
     return (
         <section className="flex flex-col gap-8 p-6 sm:p-8">
             <div className="pr-12">
-                <p className="font-inter text-body-xs text-color-caption">Новое письмо</p>
-                <h2 className="mt-2 font-playfair text-header-h2 text-color-header">Напиши себе в будущее</h2>
-                <p className="mt-3 max-w-xl font-rubik text-body-s text-color-caption">
+                <p className="font-inter text-body-xs text-color-content-tertiary">Новое письмо</p>
+                <h2 className="mt-2 font-playfair text-h2 text-color-content-primary">Напиши себе в будущее</h2>
+                <p className="mt-3 max-w-xl font-rubik text-body-s text-color-content-tertiary">
                     Сохрани мысль, состояние или обещание себе. Письмо вернётся в выбранный день.
                 </p>
             </div>

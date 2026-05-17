@@ -80,9 +80,9 @@ const Modal = ({ name, children }: ModalProps) => {
         <div
             role="dialog"
             aria-modal="true"
-            className="fixed inset-0 z-modal flex min-h-screen items-center justify-center bg-color-header/65 px-4 py-6"
+            className="fixed inset-0 z-modal flex min-h-screen items-center justify-center bg-color-bg-overlay/65 px-4 py-6"
         >
-            <div ref={modalRef} className="relative w-full max-w-2xl rounded-lg bg-color-bg shadow-modal">
+            <div ref={modalRef} className="shadow-modal relative w-full max-w-2xl rounded-lg bg-color-bg-base">
                 <div className="absolute right-4 top-4">
                     <Button variant="ghost" className="p-2" aria-label="Закрыть модальное окно" onClick={closeModal}>
                         <svg

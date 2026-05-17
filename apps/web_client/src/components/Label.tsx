@@ -4,7 +4,10 @@ type LabelProps = LabelHTMLAttributes<HTMLLabelElement>
 
 export const Label = ({ children, className = "", ...props }: LabelProps) => {
     return (
-        <label className={`mb-2 block font-inter text-body-xs text-color-caption ${className}`.trim()} {...props}>
+        <label
+            className={`mb-2 block font-inter text-body-xs text-color-content-tertiary ${className}`.trim()}
+            {...props}
+        >
             {children}
         </label>
     )

@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import { type Config } from "tailwindcss"
 
 export default {
     content: ["./index.html", "./src/**/*.{ts,tsx}"],
@@ -6,12 +6,26 @@ export default {
         extend: {
             colors: {
                 color: {
-                    bg: "#F8F7F4",
-                    surface: "#F4F4F2",
-                    text: "#4B4A46",
-                    hover: "#9A968F",
-                    header: "#2E2E2E",
-                    caption: "#5E5C59",
+                    bg: {
+                        base: "#F8F7F4",
+                        surface: "#F4F4F2",
+                        overlay: "#2E2E2E",
+                    },
+                    content: {
+                        primary: "#2E2E2E",
+                        secondary: "#4B4A46",
+                        tertiary: "#5E5C59",
+                        disabled: "#9A968F",
+                        inverse: "#F4F4F2",
+                    },
+                    border: {
+                        subtle: "#4B4A46",
+                        focus: "#4B4A46",
+                    },
+                    shadow: {
+                        primary: "#000000",
+                        accent: "#2E2E2E",
+                    },
                 },
             },
             fontFamily: {
@@ -20,25 +34,20 @@ export default {
                 inter: ["Inter", "sans-serif"],
             },
             fontSize: {
-                "header-h1": ["2.875rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 46px/57.5px
-                "header-h2": ["2.5rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 40px/50px
-                "header-h3": ["1.125rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 18px/22.5px
-                "body-xs": ["0.75rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 12px/15px
-                "body-s": ["1rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 16px/20px
-                "body-s-strong": ["1rem", { lineHeight: "1.25", fontWeight: "700", letterSpacing: "0.06rem" }], // 16px/20px
+                h1: ["2.875rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 46px/57.5px
+                h2: ["2.5rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 40px/50px
+                h3: ["1.125rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 18px/22.5px
                 "body-m": ["1.25rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 20px/25px
+                "body-s": ["1rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 16px/20px
+                "body-s-bold": ["1rem", { lineHeight: "1.25", fontWeight: "700", letterSpacing: "0.06rem" }], // 16px/20px
+                "body-xs": ["0.75rem", { lineHeight: "1.25", fontWeight: "400", letterSpacing: "0.06rem" }], // 12px/15px
             },
             backgroundImage: {
                 "image-main-pattern": "url('/assets/main_pattern.png')",
             },
-            boxShadow: {
-                section: "0 4px 4px 0 rgba(0,0,0,0.25)",
-                card: "0 4px 12px 5px rgba(0,0,0,0.25)",
-                modal: "0 24px 80px rgba(46,46,46,0.24)",
-            },
             borderRadius: {
-                card: "6px",
-                section: "12px",
+                card: "0.375rem", // 6px
+                section: "0.75rem", // 12px
             },
             zIndex: {
                 modal: "9999",

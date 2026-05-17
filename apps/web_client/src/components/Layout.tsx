@@ -4,7 +4,7 @@ import { Button } from "~/components/Button"
 
 const Layout = () => {
     return (
-        <div className="flex min-h-screen min-w-fit flex-col bg-color-bg bg-image-main-pattern bg-fixed bg-repeat antialiased">
+        <div className="flex min-h-screen min-w-fit flex-col bg-color-bg-base bg-image-main-pattern bg-fixed bg-repeat antialiased">
             <header className="mx-auto flex w-full min-w-fit max-w-7xl justify-between px-16 py-12">
                 <div></div>
                 <nav>
@@ -20,17 +20,17 @@ const Layout = () => {
             </main>
 
             <footer className="flex w-full min-w-fit justify-center">
-                <div className="flex flex-col items-center justify-center bg-color-surface/90 px-9 py-3 font-inter text-body-xs text-color-text">
+                <div className="flex flex-col items-center justify-center bg-color-bg-surface/90 px-9 py-3 font-inter text-body-xs text-color-content-secondary">
                     <nav className="flex gap-1">
-                        <a href="#" className="transition-colors hover:text-color-hover">
+                        <a href="#" className="transition-colors hover:text-color-content-disabled">
                             Email
                         </a>
                         <div>•</div>
-                        <a href="#" className="transition-colors hover:text-color-hover">
+                        <a href="#" className="transition-colors hover:text-color-content-disabled">
                             Instagram
                         </a>
                         <div>•</div>
-                        <a href="#" className="transition-colors hover:text-color-hover">
+                        <a href="#" className="transition-colors hover:text-color-content-disabled">
                             Support
                         </a>
                     </nav>
