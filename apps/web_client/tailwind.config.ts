@@ -31,6 +31,18 @@ export default {
             backgroundImage: {
                 "image-main-pattern": "url('/assets/main_pattern.png')",
             },
+            boxShadow: {
+                section: "0 4px 4px 0 rgba(0,0,0,0.25)",
+                card: "0 4px 12px 5px rgba(0,0,0,0.25)",
+                modal: "0 24px 80px rgba(46,46,46,0.24)",
+            },
+            borderRadius: {
+                card: "6px",
+                section: "12px",
+            },
+            zIndex: {
+                modal: "9999",
+            },
         },
     },
 } satisfies Config

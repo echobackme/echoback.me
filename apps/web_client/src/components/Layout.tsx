@@ -1,40 +1,17 @@
-import { Outlet, useSearchParams } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 
-const ComposePage = () => {
-    const [searchParams, setSearchParams] = useSearchParams()
-
-    const handleClose = () => {
-        const params = new URLSearchParams(searchParams)
-        params.delete("modal")
-        setSearchParams(params)
-    }
-
-    return (
-        <div>
-            <div>Compose Page</div>
-            <button
-                onClick={handleClose}
-                className="flex items-center rounded-lg bg-color-text px-4 py-2 font-inter text-body-s-strong text-color-surface transition-all duration-200 hover:bg-color-surface hover:text-color-text active:scale-95"
-            >
-                Close
-            </button>
-        </div>
-    )
-}
+import { Button } from "~/components/Button"
 
 const Layout = () => {
-    const [searchParams] = useSearchParams()
-    const activeModal = searchParams.get("modal")
-
     return (
         <div className="flex min-h-screen min-w-fit flex-col bg-color-bg bg-image-main-pattern bg-fixed bg-repeat antialiased">
             <header className="mx-auto flex w-full min-w-fit max-w-7xl justify-between px-16 py-12">
                 <div></div>
                 <nav>
-                    <button className="flex items-center rounded-lg px-4 py-2 font-inter text-body-s-strong text-color-text transition-all duration-200 hover:bg-color-text hover:text-color-surface active:scale-95">
+                    <Button variant="ghost" className="flex items-center gap-1">
                         <span>Войти</span>
                         <span className="mb-1">→</span>
-                    </button>
+                    </Button>
                 </nav>
             </header>
 
@@ -60,8 +37,6 @@ const Layout = () => {
                     <p className="mt-1">© EchoBack, {new Date().getFullYear()} - Hear Yourself Later</p>
                 </div>
             </footer>
-
-            {activeModal === "compose" && <ComposePage />}
         </div>
     )
 }
