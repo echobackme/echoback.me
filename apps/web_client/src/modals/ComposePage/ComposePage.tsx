@@ -3,13 +3,20 @@ import { Field } from "~/components/Field"
 import { Input } from "~/components/Input"
 import { Textarea } from "~/components/Textarea"
 
+import { COMPOSE_MODAL_ARIA } from "./consts"
+
 const ComposePage = () => {
     return (
         <section className="flex flex-col gap-8 p-6 sm:p-8">
             <div className="pr-12">
                 <p className="font-inter text-body-xs text-color-content-tertiary">Новое письмо</p>
-                <h2 className="mt-2 font-playfair text-h2 text-color-content-primary">Напиши себе в будущее</h2>
-                <p className="mt-3 max-w-xl font-rubik text-body-s text-color-content-tertiary">
+                <h2 id={COMPOSE_MODAL_ARIA.TITLE} className="mt-2 font-playfair text-h2 text-color-content-primary">
+                    Напиши себе в будущее
+                </h2>
+                <p
+                    id={COMPOSE_MODAL_ARIA.DESCRIPTION}
+                    className="mt-3 max-w-xl font-rubik text-body-s text-color-content-tertiary"
+                >
                     Сохрани мысль, состояние или обещание себе. Письмо вернётся в выбранный день.
                 </p>
             </div>

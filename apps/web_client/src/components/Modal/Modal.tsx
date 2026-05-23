@@ -8,9 +8,11 @@ import { useModal } from "./useModal"
 type ModalProps = {
     name: string
     children: ReactNode
+    ariaLabelledBy?: string
+    ariaDescribedBy?: string
 }
 
-const Modal = ({ name, children }: ModalProps) => {
+const Modal = ({ name, children, ariaLabelledBy, ariaDescribedBy }: ModalProps) => {
     const { activeModal, closeModal } = useModal()
     const modalRef = useRef<HTMLDivElement>(null)
     const isOpen = activeModal === name
@@ -80,6 +82,8 @@ const Modal = ({ name, children }: ModalProps) => {
         <div
             role="dialog"
             aria-modal="true"
+            aria-labelledby={ariaLabelledBy}
+            aria-describedby={ariaDescribedBy}
             className="fixed inset-0 z-modal flex min-h-screen items-center justify-center bg-color-bg-overlay/65 px-4 py-6"
         >
             <div ref={modalRef} className="shadow-modal relative w-full max-w-2xl rounded-lg bg-color-bg-base">

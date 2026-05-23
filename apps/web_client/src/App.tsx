@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import Layout from "~/components/Layout"
 import Modal from "~/components/Modal"
-import ComposePage from "~/modals/ComposePage"
+import ComposePage, { COMPOSE_MODAL_ARIA } from "~/modals/ComposePage"
 import { MODAL, ROUTE } from "~/routes"
 import Main from "~/views/Main"
 
@@ -15,7 +15,11 @@ const App = () => {
                 </Route>
             </Routes>
 
-            <Modal name={MODAL.COMPOSE}>
+            <Modal
+                name={MODAL.COMPOSE}
+                ariaLabelledBy={COMPOSE_MODAL_ARIA.TITLE}
+                ariaDescribedBy={COMPOSE_MODAL_ARIA.DESCRIPTION}
+            >
                 <ComposePage />
             </Modal>
         </BrowserRouter>
