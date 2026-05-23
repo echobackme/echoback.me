@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom"
 
-import { Button } from "~/components/Button"
+import Button from "~/components/Button"
 
 const Layout = () => {
     return (
         <div className="flex min-h-screen min-w-fit flex-col bg-color-bg-base bg-image-main-pattern bg-fixed bg-repeat antialiased">
-            <header className="mx-auto flex w-full min-w-fit max-w-7xl justify-between px-16 py-12">
+            <header className="mx-auto flex w-full min-w-fit max-w-7xl justify-between px-6 py-12 md:px-16">
                 <div></div>
                 <nav>
                     <Button variant="ghost" className="flex items-center gap-1">

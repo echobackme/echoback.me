@@ -1,50 +1,144 @@
-import { Button } from "~/components/Button"
-import { Field } from "~/components/Field"
-import { Input } from "~/components/Input"
-import { Textarea } from "~/components/Textarea"
+import { useState } from "react"
+
+import Button from "~/components/Button"
+import Checkbox from "~/components/Checkbox"
+import Field from "~/components/Field"
+import Icon, { ICONS } from "~/components/Icon"
+import Input from "~/components/Input"
+import PillGroup from "~/components/PillGroup"
+import SegmentedControl from "~/components/SegmentedControl"
+import Textarea from "~/components/Textarea"
+import Tooltip from "~/components/Tooltip"
 
 import { COMPOSE_MODAL_ARIA } from "./consts"
 
-const ComposePage = () => {
+type LetterType = "ordinary" | "last"
+
+export default function ComposePage() {
+    const [letterType, setLetterType] = useState<LetterType>("ordinary")
+    const [selectedTime, setSelectedTime] = useState<string | number | null>(null)
+    const [customDate, setCustomDate] = useState<string | null>(null)
+
+    const timeOptions = [
+        { value: 1, label: "+ 1 месяц" },
+        { value: 3, label: "+ 3 месяца" },
+        { value: 6, label: "+ 6 месяцев" },
+    ]
+
+    // TEMP: If custom date is picked via calendar, it appears as a selected option
+    const activeTimeOptions = customDate ? [...timeOptions, { value: "custom", label: customDate }] : timeOptions
+
+    const handleCalendarClick = () => {
+        // TEMP: Placeholder for calendar logic
+        const dummyDate = "24.05.2026"
+        setCustomDate(dummyDate)
+        setSelectedTime("custom")
+    }
+
     return (
-        <section className="flex flex-col gap-8 p-6 sm:p-8">
-            <div className="pr-12">
-                <p className="font-inter text-body-xs text-color-content-tertiary">Новое письмо</p>
-                <h2 id={COMPOSE_MODAL_ARIA.TITLE} className="mt-2 font-playfair text-h2 text-color-content-primary">
-                    Напиши себе в будущее
-                </h2>
+        <section className="flex flex-col bg-color-bg-surface-soft pb-12 pt-20">
+            <header className="mb-12 flex flex-col items-center px-12 text-center">
+                <div className="flex items-center gap-2">
+                    <h2 id={COMPOSE_MODAL_ARIA.TITLE} className="font-playfair text-h3 text-color-content-primary">
+                        Напиши себе в будущее
+                    </h2>
+                    <Tooltip content="письмо увидишь только ты">
+                        <Icon src={ICONS.LOCK} size={24} alt="Приватное письмо" />
+                    </Tooltip>
+                </div>
+
                 <p
                     id={COMPOSE_MODAL_ARIA.DESCRIPTION}
-                    className="mt-3 max-w-xl font-rubik text-body-s text-color-content-tertiary"
+                    className="mt-10 font-inter text-body-m tracking-wider text-color-content-tertiary"
                 >
-                    Сохрани мысль, состояние или обещание себе. Письмо вернётся в выбранный день.
+                    Тестовый текст для подзаголовка
                 </p>
-            </div>
+            </header>
 
-            <form className="flex flex-col gap-5" onSubmit={(event) => event.preventDefault()}>
-                <Field id="compose-email" label="Email">
-                    <Input id="compose-email" type="email" placeholder="you@example.com" autoComplete="email" />
+            <form className="flex flex-col gap-8 px-12" onSubmit={(event) => event.preventDefault()}>
+                <div className="flex flex-col gap-6">
+                    <Field id={COMPOSE_MODAL_ARIA.NAME} label="Имя" horizontal>
+                        <Input id={COMPOSE_MODAL_ARIA.NAME} placeholder="Твое имя" className="max-w-60" />
+                    </Field>
+
+                    <Field
+                        id={COMPOSE_MODAL_ARIA.EMAIL}
+                        label={
+                            <span>
+                                Email<span className="ml-0.5 text-body-xs text-color-content-error">*</span>
+                            </span>
+                        }
+                        horizontal
+                    >
+                        <Input
+                            id={COMPOSE_MODAL_ARIA.EMAIL}
+                            type="email"
+                            placeholder="your@email.com"
+                            autoComplete="email"
+                            className="max-w-60"
+                        />
+                    </Field>
+                </div>
+
+                <Field
+                    id={COMPOSE_MODAL_ARIA.DATE}
+                    label={
+                        <span>
+                            Когда ? <span className="ml-0.5 text-body-m text-color-content-error">*</span>
+                        </span>
+                    }
+                    horizontal
+                >
+                    <div className="flex items-center gap-4">
+                        <PillGroup
+                            name="delivery-time"
+                            options={activeTimeOptions}
+                            selectedValue={selectedTime}
+                            onChange={(val) => {
+                                setSelectedTime(val)
+                                if (val !== "custom") setCustomDate(null)
+                            }}
+                        />
+                        <Button variant="ghost" onClick={handleCalendarClick}>
+                            <Icon src={ICONS.CALENDAR} size={24} alt="Выбрать дату" />
+                        </Button>
+                    </div>
                 </Field>
 
-                <Field id="compose-subject" label="Тема">
-                    <Input id="compose-subject" placeholder="Что важно запомнить" />
-                </Field>
+                <div className="flex justify-center">
+                    <SegmentedControl
+                        name="letter-type"
+                        options={[
+                            { value: "ordinary", label: "Обычное" },
+                            { value: "last", label: "Last words" },
+                        ]}
+                        selectedValue={letterType}
+                        onChange={setLetterType}
+                    />
+                </div>
 
-                <Field id="compose-date" label="Дата отправки">
-                    <Input id="compose-date" type="date" />
-                </Field>
+                <div className="relative">
+                    <Textarea
+                        id={COMPOSE_MODAL_ARIA.MESSAGE}
+                        rows={8}
+                        placeholder="Тестовый текст"
+                        className="min-h-52"
+                    />
+                    <div className="absolute bottom-4 left-4">
+                        <Button variant="ghost" className="p-1" onClick={(event) => event.preventDefault()}>
+                            <Icon src={ICONS.TEMPLATES} size={24} alt="Шаблоны" />
+                        </Button>
+                    </div>
+                </div>
 
-                <Field id="compose-message" label="Письмо">
-                    <Textarea id="compose-message" rows={8} placeholder="Напиши себе то, что не хочешь потерять." />
-                </Field>
+                <div className="flex flex-col items-center gap-6">
+                    <Checkbox required>Я даю согласие на отправку письма</Checkbox>
 
-                <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:justify-end">
-                    <Button variant="ghost">Сохранить черновик</Button>
-                    <Button type="submit">Запланировать письмо</Button>
+                    <Button variant="action" type="submit" className="h-16 w-80 tracking-wider text-color-bg-base">
+                        Пошли в будущее
+                    </Button>
                 </div>
             </form>
         </section>
     )
 }
-
-export default ComposePage

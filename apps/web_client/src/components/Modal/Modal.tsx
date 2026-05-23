@@ -1,7 +1,8 @@
 import { type ReactNode, useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
 
-import { Button } from "~/components/Button"
+import Button from "~/components/Button"
+import Icon, { ICONS } from "~/components/Icon"
 
 import { useModal } from "./useModal"
 
@@ -12,7 +13,7 @@ type ModalProps = {
     ariaDescribedBy?: string
 }
 
-const Modal = ({ name, children, ariaLabelledBy, ariaDescribedBy }: ModalProps) => {
+export default function Modal({ name, children, ariaLabelledBy, ariaDescribedBy }: ModalProps) {
     const { activeModal, closeModal } = useModal()
     const modalRef = useRef<HTMLDivElement>(null)
     const isOpen = activeModal === name
@@ -87,7 +88,10 @@ const Modal = ({ name, children, ariaLabelledBy, ariaDescribedBy }: ModalProps) 
             className="fixed inset-0 z-modal overflow-y-auto bg-color-bg-overlay/65 p-4"
         >
             <div className="flex min-h-full items-center justify-center">
-                <div ref={modalRef} className="shadow-modal relative w-full max-w-2xl rounded-lg bg-color-bg-base">
+                <div
+                    ref={modalRef}
+                    className="relative w-full max-w-[45rem] overflow-hidden rounded-2xl bg-color-bg-base shadow-modal"
+                >
                     <div className="absolute right-4 top-4">
                         <Button
                             variant="ghost"
@@ -95,7 +99,7 @@ const Modal = ({ name, children, ariaLabelledBy, ariaDescribedBy }: ModalProps) 
                             aria-label="Закрыть модальное окно"
                             onClick={closeModal}
                         >
-                            <img src="/assets/close.svg" alt="Закрыть" className="h-5 w-5" />
+                            <Icon src={ICONS.CLOSE} size={24} alt="Закрыть" />
                         </Button>
                     </div>
 
@@ -106,5 +110,3 @@ const Modal = ({ name, children, ariaLabelledBy, ariaDescribedBy }: ModalProps) 
         modalRoot,
     )
 }
-
-export default Modal
