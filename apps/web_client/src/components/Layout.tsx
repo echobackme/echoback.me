@@ -22,15 +22,15 @@ const Layout = () => {
             <footer className="flex w-full min-w-fit justify-center">
                 <div className="flex flex-col items-center justify-center bg-color-bg-surface/90 px-9 py-3 font-inter text-body-xs text-color-content-secondary">
                     <nav className="flex gap-1">
-                        <a href="#" className="transition-colors hover:text-color-content-disabled">
+                        <a href="#" className="transition-colors hover:text-color-hover-secondary">
                             Email
                         </a>
                         <div>•</div>
-                        <a href="#" className="transition-colors hover:text-color-content-disabled">
+                        <a href="#" className="transition-colors hover:text-color-hover-secondary">
                             Instagram
                         </a>
                         <div>•</div>
-                        <a href="#" className="transition-colors hover:text-color-content-disabled">
+                        <a href="#" className="transition-colors hover:text-color-hover-secondary">
                             Support
                         </a>
                     </nav>

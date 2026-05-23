@@ -26,6 +26,11 @@ export default {
                         primary: "#000000",
                         accent: "#2E2E2E",
                     },
+                    hover: {
+                        primary: "#3D3D3D",
+                        secondary: "#2E2E2E",
+                        ghost: "#2E2E2E",
+                    },
                 },
             },
             fontFamily: {
@@ -44,10 +49,6 @@ export default {
             },
             backgroundImage: {
                 "image-main-pattern": "url('/assets/main_pattern.png')",
-            },
-            borderRadius: {
-                card: "0.375rem", // 6px
-                section: "0.75rem", // 12px
             },
             zIndex: {
                 modal: "9999",

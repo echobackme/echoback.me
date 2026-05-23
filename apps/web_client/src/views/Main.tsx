@@ -5,7 +5,7 @@ import { MODAL } from "~/routes"
 const Main = () => {
     const { openModal } = useModal()
 
-    const handleOpen = () => {
+    const handleComposeOpen = () => {
         openModal(MODAL.COMPOSE)
     }
 
@@ -19,15 +19,15 @@ const Main = () => {
                     Ты пишешь сейчас — услышишь позже.
                 </p>
 
-                <Button onClick={handleOpen} className="px-8 py-5">
+                <Button onClick={handleComposeOpen} className="px-8 py-5">
                     Написать письмо
                 </Button>
             </section>
 
-            <section className="shadow-section mt-12 flex w-full min-w-fit flex-col items-center rounded-b-section p-24 pt-12">
+            <section className="shadow-section mt-12 flex w-full min-w-fit flex-col items-center rounded-b-xl p-24 pt-12">
                 <h2 className="font-playfair text-h2 text-color-content-primary/45">Как работает Echo?</h2>
                 <div className="mt-20 flex h-44 w-full min-w-fit flex-row gap-8 whitespace-nowrap">
-                    <div className="shadow-card flex shrink-0 grow basis-1/3 flex-col items-center rounded-card px-4 pt-12">
+                    <div className="shadow-card flex shrink-0 grow basis-1/3 flex-col items-center rounded-md px-4 pt-12">
                         <div>
                             <div></div>
                             <h3 className="font-playfair text-h3 text-color-content-primary">Напишите себе письмо</h3>
@@ -36,7 +36,7 @@ const Main = () => {
                             Расскажите о том, что важно
                         </p>
                     </div>
-                    <div className="shadow-card flex shrink-0 grow basis-1/3 flex-col items-center rounded-card px-4 pt-12">
+                    <div className="shadow-card flex shrink-0 grow basis-1/3 flex-col items-center rounded-md px-4 pt-12">
                         <div>
                             <div></div>
                             <h3 className="font-playfair text-h3 text-color-content-primary">Выбери дату возврата</h3>
@@ -45,7 +45,7 @@ const Main = () => {
                             Echo вернётся в нужный момент
                         </p>
                     </div>
-                    <div className="shadow-card flex shrink-0 grow basis-1/3 flex-col items-center rounded-card px-4 pt-12">
+                    <div className="shadow-card flex shrink-0 grow basis-1/3 flex-col items-center rounded-md px-4 pt-12">
                         <div>
                             <div></div>
                             <h3 className="font-playfair text-h3 text-color-content-primary">Получи свой отклик</h3>
