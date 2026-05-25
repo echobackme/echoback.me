@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import Button from "~/components/Button"
+import Calendar, { useCalendar } from "~/components/Calendar"
 import Checkbox from "~/components/Checkbox"
 import Field from "~/components/Field"
 import Icon, { ICONS } from "~/components/Icon"
@@ -16,8 +17,17 @@ type LetterType = "ordinary" | "last"
 
 export default function ComposePage() {
     const [letterType, setLetterType] = useState<LetterType>("ordinary")
-    const [selectedTime, setSelectedTime] = useState<string | number | null>(null)
-    const [customDate, setCustomDate] = useState<string | null>(null)
+
+    const {
+        selectedTime,
+        customDate,
+        isCalendarOpen,
+        calendarRef,
+        handleCalendarSelect,
+        handlePillChange,
+        getActiveOptions,
+        toggleCalendar,
+    } = useCalendar()
 
     const timeOptions = [
         { value: 1, label: "+ 1 месяц" },
@@ -25,18 +35,8 @@ export default function ComposePage() {
         { value: 6, label: "+ 6 месяцев" },
     ]
 
-    // TEMP: If custom date is picked via calendar, it appears as a selected option
-    const activeTimeOptions = customDate ? [...timeOptions, { value: "custom", label: customDate }] : timeOptions
-
-    const handleCalendarClick = () => {
-        // TEMP: Placeholder for calendar logic
-        const dummyDate = "24.05.2026"
-        setCustomDate(dummyDate)
-        setSelectedTime("custom")
-    }
-
     return (
-        <section className="flex flex-col bg-color-bg-surface-soft pb-12 pt-20">
+        <section className="flex flex-col rounded-2xl bg-color-bg-surface-soft pb-12 pt-20">
             <header className="mb-12 flex flex-col items-center px-12 text-center">
                 <div className="flex items-center gap-2">
                     <h2 id={COMPOSE_MODAL_ARIA.TITLE} className="font-playfair text-h3 text-color-content-primary">
@@ -89,19 +89,29 @@ export default function ComposePage() {
                     }
                     horizontal
                 >
-                    <div className="flex items-center gap-4">
+                    <div className="relative flex items-center gap-4" ref={calendarRef}>
                         <PillGroup
                             name="delivery-time"
-                            options={activeTimeOptions}
+                            options={getActiveOptions(timeOptions)}
                             selectedValue={selectedTime}
-                            onChange={(val) => {
-                                setSelectedTime(val)
-                                if (val !== "custom") setCustomDate(null)
-                            }}
+                            onChange={handlePillChange}
                         />
-                        <Button variant="ghost" onClick={handleCalendarClick}>
-                            <Icon src={ICONS.CALENDAR} size={24} alt="Выбрать дату" />
-                        </Button>
+
+                        {!customDate && (
+                            <Button variant="ghost" className="p-1" onClick={toggleCalendar}>
+                                <Icon src={ICONS.CALENDAR} size={24} alt="Выбрать дату" />
+                            </Button>
+                        )}
+
+                        {isCalendarOpen && (
+                            <div className="absolute right-0 top-full z-tooltip mt-2">
+                                <Calendar
+                                    selected={customDate || undefined}
+                                    onSelect={handleCalendarSelect}
+                                    disabled={(date) => date < new Date()}
+                                />
+                            </div>
+                        )}
                     </div>
                 </Field>
 

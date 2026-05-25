@@ -27,10 +27,11 @@ export default function PillGroup<T extends string | number>({
                     <label
                         key={option.value}
                         htmlFor={id}
+                        onClick={() => isSelected && onChange(option.value)}
                         className={`flex h-9 cursor-pointer items-center justify-center whitespace-nowrap rounded-full px-4 py-2 font-inter text-body-m font-medium transition-all duration-200 ${
                             isSelected
                                 ? "bg-color-content-primary text-color-bg-base"
-                                : "bg-color-bg-surface-date text-color-content-tertiary hover:bg-color-hover-surface-date"
+                                : "bg-color-bg-surface-date text-color-content-tertiary hover:bg-color-hover-surface-date hover:text-color-content-primary"
                         } `.trim()}
                     >
                         <input

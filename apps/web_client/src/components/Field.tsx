@@ -21,7 +21,7 @@ export default function Field({
 }: FieldProps) {
     return (
         <div
-            className={`w-full ${horizontal ? "grid grid-cols-[100px_1fr] items-center gap-4" : "flex flex-col gap-1"} ${className}`.trim()}
+            className={`w-full ${horizontal ? "grid grid-cols-[6.25rem_1fr] items-center gap-4" : "flex flex-col gap-1"} ${className}`.trim()}
         >
             {label && (
                 <Label htmlFor={id} className={`mb-0 ${horizontal ? "text-right" : ""} ${labelClassName}`.trim()}>

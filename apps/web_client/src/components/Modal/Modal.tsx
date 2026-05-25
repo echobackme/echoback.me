@@ -88,10 +88,7 @@ export default function Modal({ name, children, ariaLabelledBy, ariaDescribedBy 
             className="fixed inset-0 z-modal overflow-y-auto bg-color-bg-overlay/65 p-4"
         >
             <div className="flex min-h-full items-center justify-center">
-                <div
-                    ref={modalRef}
-                    className="relative w-full max-w-[45rem] overflow-hidden rounded-2xl bg-color-bg-base shadow-modal"
-                >
+                <div ref={modalRef} className="relative w-full max-w-[45rem] rounded-2xl bg-color-bg-base shadow-modal">
                     <div className="absolute right-4 top-4">
                         <Button
                             variant="ghost"
