@@ -15,7 +15,7 @@ export default function YearGrid({ navDate, onSelect }: YearGridProps) {
                 const isPast = y < todayYear
 
                 const baseStyles =
-                    "rounded-xl py-3 text-body-s transition-all disabled:opacity-20 disabled:hover:bg-transparent"
+                    "rounded-xl py-3 text-body-s transition-all disabled:opacity-20 disabled:hover:bg-transparent "
                 const stateStyles = isCurrent
                     ? "bg-color-content-primary text-color-bg-base"
                     : "hover:bg-color-hover-surface-date hover:text-color-content-primary"
