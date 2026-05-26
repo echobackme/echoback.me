@@ -45,11 +45,7 @@ export default function Dropdown<T extends string | number>({
                 className="flex items-center gap-1 rounded-xl px-3 py-2 text-body-m font-medium text-color-content-tertiary transition-all hover:bg-color-hover-ghost/5 active:scale-95"
             >
                 <span className="uppercase">{selectedLabel}</span>
-                <Icon
-                    src={ICONS.ARROW_RIGHT}
-                    size={16}
-                    className={iconClassName}
-                />
+                <Icon src={ICONS.ARROW_RIGHT} size={16} className={iconClassName} />
             </button>
 
             {isOpen && (
@@ -60,10 +56,11 @@ export default function Dropdown<T extends string | number>({
                 >
                     {options.map((option) => {
                         const isSelected = option.value === selectedValue
-                        
-                        const baseItemStyles = "w-full px-4 py-2 text-left text-body-s transition-colors hover:bg-color-hover-surface-date "
-                        const stateStyles = isSelected 
-                            ? "font-bold text-color-content-primary" 
+
+                        const baseItemStyles =
+                            "w-full px-4 py-2 text-left text-body-s transition-colors hover:bg-color-hover-surface-date "
+                        const stateStyles = isSelected
+                            ? "font-bold text-color-content-primary"
                             : "text-color-content-tertiary"
 
                         return (
