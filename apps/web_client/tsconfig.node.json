@@ -8,14 +8,18 @@
         "strict": true,
         "skipLibCheck": true,
         "noUnusedLocals": true,
-        "noEmit": true
+        "noEmit": true,
+        "esModuleInterop": true
     },
     "include": [
-        "vite.config.ts",
+        "scripts/",
+        "types/",
         "eslint.config.ts",
+        "l10n.config.ts",
+        "lingui.config.ts",
+        "postcss.config.ts",
         "prettier.config.ts",
         "tailwind.config.ts",
-        "postcss.config.ts",
-        "tailwind.d.ts"
+        "vite.config.ts"
     ]
 }

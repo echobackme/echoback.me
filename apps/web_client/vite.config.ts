@@ -1,26 +1,86 @@
+import { lingui } from "@lingui/vite-plugin"
 import react from "@vitejs/plugin-react"
+import { parse } from "node-html-parser"
 import path from "path"
 import { defineConfig } from "vite"
 import checker from "vite-plugin-checker"
 
-export default defineConfig({
-    plugins: [
-        react(),
-        checker({
-            typescript: true,
-        }),
-    ],
-    resolve: {
-        alias: {
-            "~": path.resolve(__dirname, "./src"),
+import { isMultiLocale, type L10nLocale } from "./l10n.config"
+
+export default defineConfig(({ command }) => {
+    const locale = process.env.LOCALE as L10nLocale
+    const outDirBase = (process.env.BUILD_DIR as string) || ".build"
+    const isBuild = command === "build"
+
+    if (!locale) {
+        throw new Error("LOCALE environment variable is required")
+    }
+
+    if (isBuild && !outDirBase) {
+        throw new Error("BUILD_DIR environment variable is required during build")
+    }
+
+    return {
+        define: {
+            "import.meta.env.LOCALE": JSON.stringify(locale),
         },
-    },
-    server: {
-        port: 5005,
-        strictPort: true,
-    },
-    build: {
-        outDir: ".build",
-        sourcemap: true,
-    },
+        plugins: [
+            react({
+                babel: {
+                    plugins: [
+                        [
+                            "@lingui/babel-plugin-lingui-macro",
+                            {
+                                mode: "block",
+                            },
+                        ],
+                    ],
+                },
+            }),
+            lingui(),
+            checker({
+                typescript: true,
+            }),
+            {
+                name: "html-transform",
+                transformIndexHtml(html) {
+                    const root = parse(html)
+                    const htmlElement = root.querySelector("html")
+                    if (htmlElement) {
+                        htmlElement.setAttribute("lang", locale)
+                    }
+                    return root.toString()
+                },
+            },
+            {
+                name: "dev-redirect",
+                configureServer(server) {
+                    server.middlewares.use((req, res, next) => {
+                        if (isMultiLocale && (req.url === "/" || req.url === "")) {
+                            res.writeHead(302, { Location: `/${locale}/` })
+                            res.end()
+                        } else {
+                            next()
+                        }
+                    })
+                },
+            },
+        ],
+        resolve: {
+            alias: {
+                "~": path.resolve(__dirname, "./src"),
+            },
+        },
+        server: {
+            port: 5005,
+            strictPort: true,
+        },
+        build: {
+            outDir: `${outDirBase}/${locale}`,
+            emptyOutDir: true,
+            copyPublicDir: false,
+            assetsDir: "",
+            sourcemap: true,
+        },
+    }
 })

@@ -15,5 +15,5 @@
             "~/*": ["./src/*"]
         }
     },
-    "include": ["src/"]
+    "include": ["src/", "types/", "l10n.config.ts"]
 }

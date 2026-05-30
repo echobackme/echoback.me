@@ -1,23 +1,35 @@
+import { t } from "@lingui/core/macro"
 import { Outlet } from "react-router-dom"
 
 import Button from "~/components/Button"
-import Dropdown from "~/components/Dropdown"
+import Dropdown, { type DropdownOption } from "~/components/Dropdown"
+import { currentLocale, isMultiLocale, type L10nLocale, locales } from "~/i18n"
 
 const Layout = () => {
+    const langOptions: DropdownOption<L10nLocale>[] = locales.map((val) => ({
+        value: val,
+        label: val.toUpperCase(),
+        selected: val === currentLocale,
+    }))
+
+    const handleLocaleChange = (newLocale: L10nLocale) => {
+        if (newLocale !== currentLocale) {
+            // In a real static setup, this redirects to the new language folder
+            // e.g. /ru/compose -> /en/compose
+            window.location.href = `/${newLocale}/`
+        }
+    }
+
     return (
         <div className="flex min-h-screen min-w-fit flex-col bg-color-bg-base bg-image-main-pattern bg-fixed bg-repeat antialiased">
             <header className="mx-auto flex w-full min-w-fit max-w-7xl justify-between px-6 py-12 md:px-16">
                 <div></div>
                 <nav className="flex items-center gap-4">
-                    <Dropdown
-                        initialValue="ru"
-                        options={[
-                            { value: "ru", label: "RU" },
-                            { value: "en", label: "EN" },
-                        ]}
-                    />
+                    {isMultiLocale && (
+                        <Dropdown initialValue={currentLocale} options={langOptions} onChange={handleLocaleChange} />
+                    )}
                     <Button variant="ghost" className="flex items-center gap-1">
-                        <span>Войти</span>
+                        <span>{t({ id: "l10n.auth.login", message: "Войти" })}</span>
                         <span className="mb-1">→</span>
                     </Button>
                 </nav>

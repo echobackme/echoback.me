@@ -1,0 +1,3 @@
+# src/components/Layout.tsx:32
+msgid "l10n.auth.login"
+msgstr "Войти"

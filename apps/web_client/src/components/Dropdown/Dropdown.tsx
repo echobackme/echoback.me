@@ -1,7 +1,7 @@
 import Icon, { ICONS } from "../Icon"
 import { useDropdown } from "./useDropdown"
 
-type DropdownOption<T> = {
+export type DropdownOption<T> = {
     value: T
     label: string
 }
@@ -9,15 +9,23 @@ type DropdownOption<T> = {
 type DropdownProps<T> = {
     initialValue: T
     options: DropdownOption<T>[]
+    onChange?: (value: T) => void
     className?: string
 }
 
 export default function Dropdown<T extends string | number>({
     initialValue,
     options,
+    onChange,
     className = "",
 }: DropdownProps<T>) {
     const { isOpen, dropdownRef, toggle, close, selectedValue, handleSelect } = useDropdown(initialValue)
+
+    const handleSelectOption = (value: T) => {
+        handleSelect(value)
+        onChange?.(value)
+        close()
+    }
 
     const selectedOption = options.find((opt) => opt.value === selectedValue)
     const selectedLabel = selectedOption?.label || selectedValue
@@ -69,10 +77,7 @@ export default function Dropdown<T extends string | number>({
                                     role="option"
                                     type="button"
                                     aria-selected={isSelected}
-                                    onClick={() => {
-                                        handleSelect(option.value)
-                                        close()
-                                    }}
+                                    onClick={() => handleSelectOption(option.value)}
                                     className={baseItemStyles + stateStyles}
                                 >
                                     {option.label}
