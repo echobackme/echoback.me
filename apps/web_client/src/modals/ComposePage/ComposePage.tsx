@@ -1,3 +1,4 @@
+import { t } from "@lingui/core/macro"
 import { useState } from "react"
 
 import Button from "~/components/Button"
@@ -30,9 +31,9 @@ export default function ComposePage() {
     } = useCalendar()
 
     const timeOptions = [
-        { value: 1, label: "+ 1 месяц" },
-        { value: 3, label: "+ 3 месяца" },
-        { value: 6, label: "+ 6 месяцев" },
+        { value: 1, label: t({ id: "l10n.compose.form.date.options.1_month", message: "+ 1 месяц" }) },
+        { value: 3, label: t({ id: "l10n.compose.form.date.options.3_months", message: "+ 3 месяца" }) },
+        { value: 6, label: t({ id: "l10n.compose.form.date.options.6_months", message: "+ 6 месяцев" }) },
     ]
 
     return (
@@ -40,10 +41,14 @@ export default function ComposePage() {
             <header className="mb-12 flex flex-col items-center px-12 text-center">
                 <div className="flex items-center gap-2">
                     <h2 id={COMPOSE_MODAL_ARIA.TITLE} className="font-playfair text-h3 text-color-content-primary">
-                        Напиши себе в будущее
+                        {t({ id: "l10n.compose.title", message: "Напиши себе в будущее" })}
                     </h2>
-                    <Tooltip content="письмо увидишь только ты">
-                        <Icon src={ICONS.LOCK} size={24} alt="Приватное письмо" />
+                    <Tooltip content={t({ id: "l10n.compose.lock_tooltip", message: "письмо увидишь только ты" })}>
+                        <Icon
+                            src={ICONS.LOCK}
+                            size={24}
+                            alt={t({ id: "l10n.compose.lock_alt", message: "Приватное письмо" })}
+                        />
                     </Tooltip>
                 </div>
 
@@ -51,21 +56,30 @@ export default function ComposePage() {
                     id={COMPOSE_MODAL_ARIA.DESCRIPTION}
                     className="mt-10 font-inter text-body-m tracking-wider text-color-content-tertiary"
                 >
-                    Тестовый текст для подзаголовка
+                    {t({ id: "l10n.compose.subtitle", message: "Тестовый текст для подзаголовка" })}
                 </p>
             </header>
 
             <form className="flex flex-col gap-8 px-12" onSubmit={(event) => event.preventDefault()}>
                 <div className="flex flex-col gap-6">
-                    <Field id={COMPOSE_MODAL_ARIA.NAME} label="Имя" horizontal>
-                        <Input id={COMPOSE_MODAL_ARIA.NAME} placeholder="Твое имя" className="max-w-60" />
+                    <Field
+                        id={COMPOSE_MODAL_ARIA.NAME}
+                        label={t({ id: "l10n.compose.form.name.label", message: "Имя" })}
+                        horizontal
+                    >
+                        <Input
+                            id={COMPOSE_MODAL_ARIA.NAME}
+                            placeholder={t({ id: "l10n.compose.form.name.placeholder", message: "Твое имя" })}
+                            className="max-w-60"
+                        />
                     </Field>
 
                     <Field
                         id={COMPOSE_MODAL_ARIA.EMAIL}
                         label={
                             <span>
-                                Email<span className="ml-0.5 text-body-xs text-color-content-error">*</span>
+                                {t({ id: "l10n.compose.form.email.label", message: "Email" })}
+                                <span className="ml-0.5 text-body-xs text-color-content-error">*</span>
                             </span>
                         }
                         horizontal
@@ -73,7 +87,7 @@ export default function ComposePage() {
                         <Input
                             id={COMPOSE_MODAL_ARIA.EMAIL}
                             type="email"
-                            placeholder="your@email.com"
+                            placeholder={t({ id: "l10n.compose.form.email.placeholder", message: "your@email.com" })}
                             autoComplete="email"
                             className="max-w-60"
                         />
@@ -84,7 +98,8 @@ export default function ComposePage() {
                     id={COMPOSE_MODAL_ARIA.DATE}
                     label={
                         <span>
-                            Когда ? <span className="ml-0.5 text-body-m text-color-content-error">*</span>
+                            {t({ id: "l10n.compose.form.date.label", message: "Когда ?" })}
+                            <span className="ml-0.5 text-body-m text-color-content-error">*</span>
                         </span>
                     }
                     horizontal
@@ -99,7 +114,11 @@ export default function ComposePage() {
 
                         {!customDate && (
                             <Button variant="ghost" className="p-1" onClick={toggleCalendar}>
-                                <Icon src={ICONS.CALENDAR} size={24} alt="Выбрать дату" />
+                                <Icon
+                                    src={ICONS.CALENDAR}
+                                    size={24}
+                                    alt={t({ id: "l10n.compose.form.date.calendar_alt", message: "Выбрать дату" })}
+                                />
                             </Button>
                         )}
 
@@ -119,8 +138,14 @@ export default function ComposePage() {
                     <SegmentedControl
                         name="letter-type"
                         options={[
-                            { value: "ordinary", label: "Обычное" },
-                            { value: "last", label: "Last words" },
+                            {
+                                value: "ordinary",
+                                label: t({ id: "l10n.compose.form.type.ordinary", message: "Обычное" }),
+                            },
+                            {
+                                value: "last",
+                                label: t({ id: "l10n.compose.form.type.last_words", message: "Last words" }),
+                            },
                         ]}
                         selectedValue={letterType}
                         onChange={setLetterType}
@@ -131,21 +156,27 @@ export default function ComposePage() {
                     <Textarea
                         id={COMPOSE_MODAL_ARIA.MESSAGE}
                         rows={8}
-                        placeholder="Тестовый текст"
+                        placeholder={t({ id: "l10n.compose.form.message.placeholder", message: "Тестовый текст" })}
                         className="min-h-52"
                     />
                     <div className="absolute bottom-4 left-4">
                         <Button variant="ghost" className="p-1" onClick={(event) => event.preventDefault()}>
-                            <Icon src={ICONS.TEMPLATES} size={24} alt="Шаблоны" />
+                            <Icon
+                                src={ICONS.TEMPLATES}
+                                size={24}
+                                alt={t({ id: "l10n.compose.form.message.templates_alt", message: "Шаблоны" })}
+                            />
                         </Button>
                     </div>
                 </div>
 
                 <div className="flex flex-col items-center gap-6">
-                    <Checkbox required>Я даю согласие на отправку письма</Checkbox>
+                    <Checkbox required>
+                        {t({ id: "l10n.compose.form.consent", message: "Я даю согласие на отправку письма" })}
+                    </Checkbox>
 
                     <Button variant="action" type="submit" className="h-16 w-80 tracking-wider text-color-bg-base">
-                        Пошли в будущее
+                        {t({ id: "l10n.compose.form.submit", message: "Пошли в будущее" })}
                     </Button>
                 </div>
             </form>

@@ -1,3 +1,171 @@
-# src/components/Layout.tsx:32
+# src/components/Layout.tsx
 msgid "l10n.auth.login"
 msgstr "Войти"
+
+# src/components/Calendar/CalendarHeader.tsx
+msgid "l10n.calendar.nav.next_9_years"
+msgstr "Следующие 9 лет"
+
+# src/components/Calendar/CalendarHeader.tsx
+msgid "l10n.calendar.nav.next_month"
+msgstr "Следующий месяц"
+
+# src/components/Calendar/CalendarHeader.tsx
+msgid "l10n.calendar.nav.next_year"
+msgstr "Следующий год"
+
+# src/components/Calendar/CalendarHeader.tsx
+msgid "l10n.calendar.nav.prev_9_years"
+msgstr "Предыдущие 9 лет"
+
+# src/components/Calendar/CalendarHeader.tsx
+msgid "l10n.calendar.nav.prev_month"
+msgstr "Предыдущий месяц"
+
+# src/components/Calendar/CalendarHeader.tsx
+msgid "l10n.calendar.nav.prev_year"
+msgstr "Предыдущий год"
+
+# src/components/Calendar/CalendarHeader.tsx
+msgid "l10n.calendar.nav.select_month"
+msgstr "Выбрать месяц"
+
+# src/components/Calendar/CalendarHeader.tsx
+msgid "l10n.calendar.nav.select_year"
+msgstr "Выбрать год"
+
+# src/components/Calendar/YearGrid.tsx
+msgid "l10n.calendar.nav.select_year_grid"
+msgstr "Выбор года"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.consent"
+msgstr "Я даю согласие на отправку письма"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.date.calendar_alt"
+msgstr "Выбрать дату"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.date.label"
+msgstr "Когда ?"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.date.options.1_month"
+msgstr "+ 1 месяц"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.date.options.3_months"
+msgstr "+ 3 месяца"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.date.options.6_months"
+msgstr "+ 6 месяцев"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.email.label"
+msgstr "Email"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.email.placeholder"
+msgstr "your@email.com"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.message.placeholder"
+msgstr "Тестовый текст"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.message.templates_alt"
+msgstr "Шаблоны"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.name.label"
+msgstr "Имя"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.name.placeholder"
+msgstr "Твое имя"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.submit"
+msgstr "Пошли в будущее"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.type.last_words"
+msgstr "Last words"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.form.type.ordinary"
+msgstr "Обычное"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.lock_alt"
+msgstr "Приватное письмо"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.lock_tooltip"
+msgstr "письмо увидишь только ты"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.subtitle"
+msgstr "Тестовый текст для подзаголовка"
+
+# src/modals/ComposePage/ComposePage.tsx
+msgid "l10n.compose.title"
+msgstr "Напиши себе в будущее"
+
+# src/components/Layout.tsx
+msgid "l10n.footer.email"
+msgstr "Email"
+
+# src/components/Layout.tsx
+msgid "l10n.footer.instagram"
+msgstr "Instagram"
+
+# src/components/Layout.tsx
+msgid "l10n.footer.support"
+msgstr "Support"
+
+# src/components/Layout.tsx
+msgid "l10n.footer.tagline"
+msgstr "Hear Yourself Later"
+
+# src/views/Main.tsx
+msgid "l10n.main.hero.cta"
+msgstr "Написать письмо"
+
+# src/views/Main.tsx
+msgid "l10n.main.hero.subtitle"
+msgstr "Сохрани себе в моменте.<br>Ты пишешь сейчас — услышишь позже."
+
+# src/views/Main.tsx
+msgid "l10n.main.hero.title"
+msgstr "Напиши себе в будущее"
+
+# src/views/Main.tsx
+msgid "l10n.main.how_it_works.step1.description"
+msgstr "Расскажите о том, что важно"
+
+# src/views/Main.tsx
+msgid "l10n.main.how_it_works.step1.title"
+msgstr "Напишите себе письмо"
+
+# src/views/Main.tsx
+msgid "l10n.main.how_it_works.step2.description"
+msgstr "Echo вернётся в нужный момент"
+
+# src/views/Main.tsx
+msgid "l10n.main.how_it_works.step2.title"
+msgstr "Выбери дату возврата"
+
+# src/views/Main.tsx
+msgid "l10n.main.how_it_works.step3.description"
+msgstr "Ты увидишь себя с другой стороны"
+
+# src/views/Main.tsx
+msgid "l10n.main.how_it_works.step3.title"
+msgstr "Получи свой отклик"
+
+# src/views/Main.tsx
+msgid "l10n.main.how_it_works.title"
+msgstr "Как работает Echo?"

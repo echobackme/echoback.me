@@ -1,5 +1,6 @@
-import { format, isBefore, startOfMonth } from "date-fns"
-import { ru } from "date-fns/locale"
+import { isBefore, startOfMonth } from "date-fns"
+
+import { browserRegionLocale } from "~/i18n"
 
 type MonthGridProps = {
     navDate: Date
@@ -9,6 +10,9 @@ type MonthGridProps = {
 export default function MonthGrid({ navDate, onSelect }: MonthGridProps) {
     const months = Array.from({ length: 12 }, (_, i) => i)
     const todayStart = startOfMonth(new Date())
+
+    // Use Intl API for localized month names
+    const monthFormatter = new Intl.DateTimeFormat(browserRegionLocale, { month: "short" })
 
     return (
         <div className="grid grid-cols-3 gap-2 py-2" role="grid" aria-label="Выбор месяца">
@@ -33,7 +37,7 @@ export default function MonthGrid({ navDate, onSelect }: MonthGridProps) {
                         onClick={() => onSelect(m)}
                         className={baseStyles + stateStyles}
                     >
-                        {format(monthDate, "LLL", { locale: ru })}
+                        {monthFormatter.format(monthDate)}
                     </button>
                 )
             })}

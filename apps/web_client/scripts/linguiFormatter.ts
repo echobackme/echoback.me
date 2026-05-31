@@ -16,12 +16,9 @@ export const linguiFormatter: CatalogFormatter = {
 
             for (const line of lines) {
                 if (line.startsWith("# ")) {
-                    const originStr = line.replace("# ", "").trim()
-                    if (originStr) {
-                        const parts = originStr.split(":")
-                        const path = parts[0]
-                        const lineNum = parts[1] ? parseInt(parts[1], 10) : 0
-                        origin.push([path, lineNum])
+                    const originPath = line.replace("# ", "").trim()
+                    if (originPath) {
+                        origin.push([originPath, 0])
                     }
                 } else if (line.startsWith("msgid ")) {
                     msgid = line.match(/"(.*)"/)?.[1] || ""
@@ -50,11 +47,11 @@ export const linguiFormatter: CatalogFormatter = {
         for (const key of keys) {
             const entry = catalog[key]
 
-            // Path:Line (Comment)
+            // Path (Comment)
             const origins = entry.origin || []
             if (origins.length > 0) {
-                for (const [path, line] of origins) {
-                    output.push(`# ${path}${line ? `:${line}` : ""}`)
+                for (const [path] of origins) {
+                    output.push(`# ${path}`)
                 }
             } else {
                 output.push("# unknown")

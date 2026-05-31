@@ -7,7 +7,7 @@ import ComposePage, { COMPOSE_MODAL_ARIA } from "~/modals/ComposePage"
 import { MODAL, ROUTE } from "~/routes"
 import Main from "~/views/Main"
 
-const App = () => {
+export default function App() {
     return (
         <BrowserRouter basename={browserRouterBasename}>
             <Routes>
@@ -26,5 +26,3 @@ const App = () => {
         </BrowserRouter>
     )
 }
-
-export default App

@@ -43,18 +43,21 @@ const Layout = () => {
                 <div className="flex flex-col items-center justify-center bg-color-bg-surface/90 px-9 py-3 font-inter text-body-xs text-color-content-secondary">
                     <nav className="flex gap-1">
                         <a href="#" className="transition-colors hover:text-color-hover-secondary">
-                            Email
+                            {t({ id: "l10n.footer.email", message: "Email" })}
                         </a>
                         <div>•</div>
                         <a href="#" className="transition-colors hover:text-color-hover-secondary">
-                            Instagram
+                            {t({ id: "l10n.footer.instagram", message: "Instagram" })}
                         </a>
                         <div>•</div>
                         <a href="#" className="transition-colors hover:text-color-hover-secondary">
-                            Support
+                            {t({ id: "l10n.footer.support", message: "Support" })}
                         </a>
                     </nav>
-                    <p className="mt-1">© EchoBack, {new Date().getFullYear()} - Hear Yourself Later</p>
+                    <p className="mt-1">
+                        © EchoBack, {new Date().getFullYear()} -{" "}
+                        {t({ id: "l10n.footer.tagline", message: "Hear Yourself Later" })}
+                    </p>
                 </div>
             </footer>
         </div>

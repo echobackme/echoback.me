@@ -1,5 +1,6 @@
-import { format } from "date-fns"
-import { ru } from "date-fns/locale"
+import { t } from "@lingui/core/macro"
+
+import { browserRegionLocale } from "~/i18n"
 
 import Icon, { ICONS } from "../Icon"
 import { type ViewMode } from "./useCalendar"
@@ -17,9 +18,21 @@ export default function CalendarHeader({ navDate, viewMode, onPrev, onNext, onVi
         "text-body-m-bold transition-all hover:text-color-content-accent capitalize underline-offset-4 hover:underline"
 
     const prevLabel =
-        viewMode === "days" ? "Предыдущий месяц" : viewMode === "months" ? "Предыдущий год" : "Предыдущие 9 лет"
+        viewMode === "days"
+            ? t({ id: "l10n.calendar.nav.prev_month", message: "Предыдущий месяц" })
+            : viewMode === "months"
+              ? t({ id: "l10n.calendar.nav.prev_year", message: "Предыдущий год" })
+              : t({ id: "l10n.calendar.nav.prev_9_years", message: "Предыдущие 9 лет" })
     const nextLabel =
-        viewMode === "days" ? "Следующий месяц" : viewMode === "months" ? "Следующий год" : "Следующие 9 лет"
+        viewMode === "days"
+            ? t({ id: "l10n.calendar.nav.next_month", message: "Следующий месяц" })
+            : viewMode === "months"
+              ? t({ id: "l10n.calendar.nav.next_year", message: "Следующий год" })
+              : t({ id: "l10n.calendar.nav.next_9_years", message: "Следующие 9 лет" })
+
+    // Use Intl API for formatted display names (zero bundle size, browser native)
+    const monthName = new Intl.DateTimeFormat(browserRegionLocale, { month: "long" }).format(navDate)
+    const yearName = new Intl.DateTimeFormat(browserRegionLocale, { year: "numeric" }).format(navDate)
 
     return (
         <div className="mb-4 flex h-10 items-center justify-center gap-1">
@@ -36,22 +49,22 @@ export default function CalendarHeader({ navDate, viewMode, onPrev, onNext, onVi
                 <button
                     type="button"
                     onClick={() => onViewChange(viewMode === "months" ? "days" : "months")}
-                    aria-label="Выбрать месяц"
+                    aria-label={t({ id: "l10n.calendar.nav.select_month", message: "Выбрать месяц" })}
                     aria-haspopup="grid"
                     aria-expanded={viewMode === "months"}
                     className={baseHeaderStyles + (viewMode === "months" ? " text-color-content-accent underline" : "")}
                 >
-                    {format(navDate, "LLLL", { locale: ru })}
+                    {monthName}
                 </button>
                 <button
                     type="button"
                     onClick={() => onViewChange(viewMode === "years" ? "days" : "years")}
-                    aria-label="Выбрать год"
+                    aria-label={t({ id: "l10n.calendar.nav.select_year", message: "Выбрать год" })}
                     aria-haspopup="grid"
                     aria-expanded={viewMode === "years"}
                     className={baseHeaderStyles + (viewMode === "years" ? " text-color-content-accent underline" : "")}
                 >
-                    {format(navDate, "yyyy", { locale: ru })}
+                    {yearName}
                 </button>
             </div>
 

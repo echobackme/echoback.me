@@ -1,5 +1,6 @@
-import { ru } from "date-fns/locale"
 import { type DayButtonProps, DayPicker } from "react-day-picker"
+
+import { dateFnsLocale } from "~/i18n"
 
 function CustomDayButton(props: DayButtonProps) {
     const { modifiers, className, ...buttonProps } = props
@@ -32,7 +33,7 @@ export default function DayGrid({ navDate, selected, onSelect, onMonthChange, di
             month={navDate}
             onMonthChange={onMonthChange}
             disabled={disabled}
-            locale={ru}
+            locale={dateFnsLocale}
             hideNavigation
             components={{
                 MonthCaption: () => null,
