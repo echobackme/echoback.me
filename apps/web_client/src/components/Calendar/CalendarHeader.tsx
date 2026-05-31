@@ -2,7 +2,7 @@ import { format } from "date-fns"
 import { ru } from "date-fns/locale"
 
 import Icon, { ICONS } from "../Icon"
-import { ViewMode } from "./useCalendar"
+import { type ViewMode } from "./useCalendar"
 
 type CalendarHeaderProps = {
     navDate: Date

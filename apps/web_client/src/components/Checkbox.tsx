@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, ReactNode, useId } from "react"
+import { type InputHTMLAttributes, type ReactNode, useId } from "react"
 
 type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
     children?: ReactNode

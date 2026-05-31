@@ -1,5 +1,5 @@
 import { ru } from "date-fns/locale"
-import { DayButtonProps, DayPicker } from "react-day-picker"
+import { type DayButtonProps, DayPicker } from "react-day-picker"
 
 function CustomDayButton(props: DayButtonProps) {
     const { modifiers, className, ...buttonProps } = props

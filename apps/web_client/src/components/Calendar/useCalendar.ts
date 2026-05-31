@@ -1,5 +1,5 @@
 import { addMonths, addYears, format, setMonth, setYear, subMonths, subYears } from "date-fns"
-import { ReactNode, useEffect, useRef, useState } from "react"
+import { type ReactNode, useEffect, useRef, useState } from "react"
 
 export type ViewMode = "days" | "months" | "years"
 
