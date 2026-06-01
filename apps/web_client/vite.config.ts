@@ -9,7 +9,7 @@ import { isMultiLocale, type L10nLocale } from "./l10n.config"
 
 export default defineConfig(({ command }) => {
     const locale = process.env.LOCALE as L10nLocale
-    const outDirBase = (process.env.BUILD_DIR as string) || ".build"
+    const outDirBase = process.env.BUILD_DIR as string
     const isBuild = command === "build"
 
     if (!locale) {
@@ -27,20 +27,14 @@ export default defineConfig(({ command }) => {
         plugins: [
             react({
                 babel: {
-                    plugins: [
-                        [
-                            "@lingui/babel-plugin-lingui-macro",
-                            {
-                                mode: "block",
-                            },
-                        ],
-                    ],
+                    plugins: ["@lingui/babel-plugin-lingui-macro"],
                 },
             }),
             lingui(),
-            checker({
-                typescript: true,
-            }),
+            !isBuild &&
+                checker({
+                    typescript: true,
+                }),
             {
                 name: "html-transform",
                 transformIndexHtml(html) {
@@ -69,6 +63,7 @@ export default defineConfig(({ command }) => {
         resolve: {
             alias: {
                 "~": path.resolve(__dirname, "./src"),
+                "virtual:locale-catalog": path.resolve(__dirname, `./locales/${locale}.po`),
             },
         },
         server: {
@@ -80,7 +75,7 @@ export default defineConfig(({ command }) => {
             emptyOutDir: true,
             copyPublicDir: false,
             assetsDir: "",
-            sourcemap: true,
+            sourcemap: false,
         },
     }
 })

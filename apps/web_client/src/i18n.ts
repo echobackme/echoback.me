@@ -1,6 +1,7 @@
 import { i18n } from "@lingui/core"
 import { type Locale, ru } from "date-fns/locale"
 import React, { type ReactNode } from "react"
+import { messages } from "virtual:locale-catalog"
 
 import { isMultiLocale, type L10nLocale, locales } from "../l10n.config"
 
@@ -30,15 +31,10 @@ const DATE_FNS_MAP: Record<string, Locale> = {
 export const dateFnsLocale = DATE_FNS_MAP[currentLocale] || ru
 
 /**
- * In 'block' mode, translations are inlined at build time.
- * However, we still need to activate the locale for runtime logic:
- * 1. Native Intl API (formatting dates, numbers, etc.)
- * 2. Lingui runtime features (pluralization rules and complex interpolations)
- *
- * We load an empty object to silence the "Messages not loaded" warning.
+ * The catalog import is compiled by @lingui/vite-plugin
  */
 export function initI18n() {
-    i18n.load(currentLocale, {})
+    i18n.load(currentLocale, messages)
     i18n.activate(currentLocale)
 }
 
