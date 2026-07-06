@@ -5,7 +5,7 @@ import path from "path"
 import { defineConfig } from "vite"
 import checker from "vite-plugin-checker"
 
-import { isMultiLocale, type L10nLocale } from "./l10n.config"
+import { type L10nLocale } from "./l10n.config"
 
 export default defineConfig(({ command }) => {
     const locale = process.env.LOCALE as L10nLocale
@@ -21,6 +21,7 @@ export default defineConfig(({ command }) => {
     }
 
     return {
+        base: isBuild ? `/${locale}/` : "/",
         define: {
             "import.meta.env.LOCALE": JSON.stringify(locale),
         },
@@ -44,19 +45,6 @@ export default defineConfig(({ command }) => {
                         htmlElement.setAttribute("lang", locale)
                     }
                     return root.toString()
-                },
-            },
-            {
-                name: "dev-redirect",
-                configureServer(server) {
-                    server.middlewares.use((req, res, next) => {
-                        if (isMultiLocale && (req.url === "/" || req.url === "")) {
-                            res.writeHead(302, { Location: `/${locale}/` })
-                            res.end()
-                        } else {
-                            next()
-                        }
-                    })
                 },
             },
         ],

@@ -3,9 +3,9 @@ import { type Locale, ru } from "date-fns/locale"
 import React, { type ReactNode } from "react"
 import { messages } from "virtual:locale-catalog"
 
-import { isMultiLocale, type L10nLocale, locales } from "../l10n.config"
+import { type L10nLocale, locales } from "../l10n.config"
 
-export { isMultiLocale, type L10nLocale, locales }
+export { type L10nLocale, locales }
 
 // The locale is injected by Vite during the build process via 'define'
 export const currentLocale = import.meta.env.LOCALE
@@ -14,13 +14,18 @@ if (!currentLocale) {
     throw new Error("LOCALE environment variable is not defined")
 }
 
-export const browserRouterBasename = isMultiLocale ? `/${currentLocale}` : "/"
+const hasLocalePrefix =
+    typeof window !== "undefined" &&
+    locales.some((locale) => (window.location.pathname + "/").startsWith(`/${locale}/`))
+
+export const browserRouterBasename = hasLocalePrefix ? `/${currentLocale}` : "/"
 
 // Get the full region locale from the browser (e.g., "ru-RU" or "en-US")
 // Fallback to the short currentLocale if browser detection fails
 export const browserRegionLocale =
     typeof window !== "undefined" && navigator.languages?.length
-        ? navigator.languages.find((lang) => lang.startsWith(currentLocale)) || navigator.language
+        ? // TODO: Investigate fallback here, looks like we can set up incorrect locale
+          navigator.languages.find((lang) => lang.startsWith(currentLocale)) || navigator.language
         : currentLocale
 
 // Date-fns locales for structural logic (e.g., week starts on Monday in RU)
@@ -28,6 +33,7 @@ const DATE_FNS_MAP: Record<string, Locale> = {
     ru: ru,
 }
 
+// TODO: Why do we need fallback here? DATE_FNS_MAP should always include currentLocale
 export const dateFnsLocale = DATE_FNS_MAP[currentLocale] || ru
 
 /**

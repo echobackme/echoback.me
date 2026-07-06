@@ -7,6 +7,7 @@ RUN yarn build:all
 
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Destination path must match the 'root' directive in nginx.conf!
 COPY --from=build /app/.build /usr/share/nginx/html
 EXPOSE 80
 

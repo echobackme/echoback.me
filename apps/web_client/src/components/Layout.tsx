@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom"
 
 import Button from "~/components/Button"
 import Dropdown, { type DropdownOption } from "~/components/Dropdown"
-import { currentLocale, isMultiLocale, type L10nLocale, locales } from "~/i18n"
+import { currentLocale, type L10nLocale, locales } from "~/i18n"
 
 const Layout = () => {
     const langOptions: DropdownOption<L10nLocale>[] = locales.map((val) => ({
@@ -25,7 +25,7 @@ const Layout = () => {
             <header className="mx-auto flex w-full min-w-fit max-w-7xl justify-between px-6 py-12 md:px-16">
                 <div></div>
                 <nav className="flex items-center gap-4">
-                    {isMultiLocale && (
+                    {locales.length > 1 && (
                         <Dropdown initialValue={currentLocale} options={langOptions} onChange={handleLocaleChange} />
                     )}
                     <Button variant="ghost" className="flex items-center gap-1">
