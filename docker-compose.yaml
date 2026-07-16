@@ -3,5 +3,7 @@ services:
     web_client:
         build:
             context: ./apps/web_client/
+        environment:
+            - PORT=80
         ports:
             - "8080:80"
