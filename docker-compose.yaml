@@ -1,9 +1,27 @@
 name: echoback
 services:
+    reverse_proxy:
+        build:
+            context: ./apps/reverse_proxy/
+        ports:
+            - "${REVERSE_PROXY_PORT}:80"
+        environment:
+            - API_CORE_HOST=api_core
+            - API_CORE_PORT=${API_CORE_PORT}
+            - WEB_CLIENT_HOST=web_client
+            - WEB_CLIENT_PORT=${WEB_CLIENT_PORT}
+        depends_on:
+            - web_client
+            - api_core
+    
     web_client:
         build:
             context: ./apps/web_client/
         environment:
-            - PORT=80
-        ports:
-            - "8080:80"
+            - PORT=${WEB_CLIENT_PORT}
+
+    api_core:
+        build:
+            context: ./apps/api_core/
+        environment:
+            - PORT=${API_CORE_PORT}
